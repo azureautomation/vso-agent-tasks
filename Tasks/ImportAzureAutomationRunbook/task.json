@@ -1,0 +1,81 @@
+﻿{
+    "id": "0e783236-63ab-4c3e-b8a2-b3a8839c2fd5",
+    "name": "AzureAutomationRunbookImport",
+    "friendlyName": "Azure Automation Runbook Import",
+    "description": "Import an Azure Automation runbook",
+    "helpMarkDown": "[More Information](https://github.com/Microsoft/vso-agent-tasks/blob/master/Tasks/ImportAzureAutomationRunbook/README.md)",
+    "category": "Deploy",
+    "visibility": [
+                "Preview",
+                "Build",
+                "Release"
+                  ],
+    "author": "Microsoft Corporation",
+    "version": {
+        "Major": 1,
+        "Minor": 0,
+        "Patch": 0
+    },
+    "demands": [
+        "azureps"
+    ],
+    "minimumAgentVersion": "1.86.0",
+    "groups": [
+    ],
+    "inputs": [
+        {
+            "name": "ConnectedServiceName",
+            "type": "connectedService:Azure",
+            "label": "Azure Subscription",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Azure subscription to target for the runbook import."
+        },
+	    {
+            "name": "ResourceGroupName", 
+            "type": "string", 
+            "label": "Resource Group",
+            "required": true,
+            "helpMarkDown": "Azure Resource Group to target for the runbook import."
+        },
+        {
+            "name": "AutomationAccountName", 
+            "type": "string", 
+            "label": "Automation Account",
+            "required": true,
+            "helpMarkDown": "Azure Automation account to import the runbook into."
+        },
+        {
+            "name": "RunbookType",
+            "type": "pickList",
+            "label": "Runbook Type",
+            "defaultValue": "PowerShell Workflow",
+            "required": true,
+            "helpMarkDown": "The type of the runbook to import",
+            "options": {
+                "Graphical": "Graph",
+                "PowerShell": "PowerShell",
+                "PowerShell Workflow": "PowerShellWorkflow"
+            },
+            "properties": {
+                "EditableOptions": "True" 
+            }
+        },
+        { 
+            "name": "RunbookFile", 
+            "type": "filePath", 
+            "label": "Runbook File", 
+            "defaultValue":"",
+            "required": true,
+            "helpMarkDown": "Specify the path to the runbook."
+        }
+    ],
+    "instanceNameFormat": "Azure Automation Runbook Import: $(runbookFile)",
+    "execution": {
+        "AzurePowerShell": {
+          "target": "$(currentDirectory)\\ImportAzureAutomationRunbook.ps1",
+          "argumentFormat": "",
+          "workingDirectory": "$(currentDirectory)"
+        }
+    }
+}
