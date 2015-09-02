@@ -49,11 +49,10 @@
             "name": "RunbookType",
             "type": "pickList",
             "label": "Runbook Type",
-            "defaultValue": "PowerShell Workflow",
             "required": true,
             "helpMarkDown": "The type of the runbook to import",
             "options": {
-                "Graphical": "Graph",
+                "Graph": "Graph",
                 "PowerShell": "PowerShell",
                 "PowerShell Workflow": "PowerShellWorkflow"
             },
