@@ -52,7 +52,7 @@
             "required": true,
             "helpMarkDown": "The type of the runbook to import",
             "options": {
-                "Graph": "Graph",
+                "Graphical": "Graph",
                 "PowerShell": "PowerShell",
                 "PowerShell Workflow": "PowerShellWorkflow"
             },
