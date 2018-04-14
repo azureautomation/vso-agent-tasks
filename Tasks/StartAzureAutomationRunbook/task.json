@@ -1,9 +1,9 @@
-﻿{
-    "id": "0e783236-63ab-4c3e-b8a2-b3a8839c2fd5",
-    "name": "AzureAutomationRunbookImport",
-    "friendlyName": "Azure Automation runbook import",
-    "description": "Import an Azure Automation runbook",
-    "helpMarkDown": "[More Information](https://github.com/azureautomation/vso-agent-tasks/tree/master/Tasks/ImportAzureAutomationRunbook)",
+{
+    "id": "2f650d97-7b13-40a2-abed-98c02268551a",
+    "name": "StartAzureAutomationRunbook",
+    "friendlyName": "Azure Automation runbook job",
+    "description": "Start a runbook job",
+    "helpMarkDown": "[More Information](https://github.com/azureautomation/vso-agent-tasks/tree/master/Tasks/StartAzureAutomationRunbook)",
     "category": "Deploy",
     "visibility": [
                 "Preview",
@@ -51,15 +51,29 @@
             "properties": {
                 "EditableOptions": "True"
             },
-            "helpMarkDown": "Azure Automation account to import the runbooks into."
+            "helpMarkDown": "Azure Automation account that contains the runbook.."
         },
         { 
-            "name": "RunbookPath", 
-            "type": "filePath", 
-            "label": "Runbook file or folder", 
+            "name": "RunbookName", 
+            "type": "pickList", 
+            "label": "Runbook Name", 
             "defaultValue":"",
             "required": true,
-            "helpMarkDown": "Specify individual file or folder containing the runbooks."
+            "properties": {
+                "EditableOptions": "True"
+            },
+            "helpMarkDown": "Specify the name of the runbook"
+        },
+        { 
+            "name": "RunbookParameters", 
+            "type": "string", 
+            "label": "Runbook Parameters", 
+            "defaultValue":"",
+            "required": false,
+            "properties": {
+                "EditableOptions": "True"
+            },
+            "helpMarkDown": "Specify any parameters for the runbook in a json name value structure. Example {'ParameterName1': 'WA'  , 'ParameterName2':  'Seattle'}."
         }
     ],
     "dataSourceBindings": [
@@ -77,12 +91,23 @@
           "parameters": {
             "ResourceGroupName": "$(ResourceGroupName)"
           }
-        }
-    ],
-    "instanceNameFormat": "Azure Automation Runbook Import: $(RunbookPath)",
+        },
+        {
+            "name": "RunbookName",
+            "target": "RunbookName",
+            "endpointId": "$(ConnectedServiceName)",
+            "EndpointUrl": "{{endpoint.url}}/subscriptions/$(endpoint.subscriptionId)/resourceGroups/$(ResourceGroupName)/providers/Microsoft.Automation/automationAccounts/$(AutomationAccountName)/runbooks?api-version=2015-10-31",
+            "resultSelector": "jsonpath:$.value[*].name",
+            "parameters": {
+              "ResourceGroupName": "$(ResourceGroupName)",
+              "AutomationAccountName": "$(AutomationAccountName)"
+            }
+          }
+      ],
+    "instanceNameFormat": "Azure Automation Runbook job: $(RunbookName)",
     "execution": {
         "AzurePowerShell": {
-          "target": "$(currentDirectory)\\ImportAzureAutomationRunbook.ps1",
+          "target": "$(currentDirectory)\\StartAzureAutomationRunbook.ps1",
           "argumentFormat": "",
           "workingDirectory": "$(currentDirectory)"
         }
