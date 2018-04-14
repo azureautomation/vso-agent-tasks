@@ -1,6 +1,6 @@
 # Azure Automation Runbook Import Task
 
-### Overview
+## Overview
 
 This task is used to import a runbook into Azure Automation, in published state. It will overwrite an existing runbook.
 
@@ -14,10 +14,12 @@ This task is used to import a runbook into Azure Automation, in published state.
 
 - **Runbook Path** The path to the specific runbook or folder that contains runbooks to import into the Automation account.
 
+## Instructions
 
-### Prerequisite for the task
+
+## Prerequisite for the task
 
 ##### Azure Subscription
 To deploy to Azure, an Azure subscription has to be linked to VSO using the Services tab in the Account Administration section.
 
-Add the Azure subscription to use in the Build tasks by opening the Account Administration screen (gear icon on the top-right of the screen) and then click on the Services tab. Select Azure from the Add New Service Connection dropdown. 
+Add the Azure subscription to use in the Build or Release tasks by opening the Account Administration screen (gear icon on the top-right of the screen) and then click on the Services tab. Select Azure from the Add New Service Connection dropdown.
