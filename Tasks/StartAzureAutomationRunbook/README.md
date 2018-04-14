@@ -18,7 +18,15 @@ Param (
 Write-Output $FirstName
 Write-Output $LastName
 ```
-would take {'FirstName': 'John', 'LastName': 'Smith'} as the parameter json file for the runbook.
+would take 
+
+```json
+{
+    "LastName":  "Smith",
+    "FirstName":  "John"
+}
+```
+as the parameter json file for the runbook.
 
 ### The different parameters of the task are as described below
 
