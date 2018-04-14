@@ -2,7 +2,7 @@
 
 ## Overview
 
-This task is used to start a runbook in Azure Automation. It can optionally take parameters required for the runbook entered in json form.
+This task is used to start a runbook in Azure Automation. It can optionally take a parameters file required for the runbook entered in json form.
 Example:
 
 ```PowerShell
@@ -18,7 +18,7 @@ Param (
 Write-Output $FirstName
 Write-Output $LastName
 ```
-would take {'FirstName': 'John', 'LastName': 'Smith'} as the parameter values for the runbook.
+would take {'FirstName': 'John', 'LastName': 'Smith'} as the parameter json file for the runbook.
 
 ### The different parameters of the task are as described below
 
@@ -30,7 +30,7 @@ would take {'FirstName': 'John', 'LastName': 'Smith'} as the parameter values fo
 
 - **Runbook Name** The name runbook in the Automation account to start.
 
-- **Runbook Parameters** An optional list of parameters to pass to the runbook.
+- **Runbook Parameters** An optional json parameters file to pass to the runbook.
 
 
 ## Instructions

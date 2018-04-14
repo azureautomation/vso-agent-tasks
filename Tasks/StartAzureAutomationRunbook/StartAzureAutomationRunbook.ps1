@@ -10,11 +10,14 @@ $ErrorActionPreference = "Stop"
 
 if ($RunbookParameters)
 {
-    # Create a hash table from the json values passed in
     $Parameters = @{}
+    # Read json file passed in for the parameters
+    $RunbookParameters = Get-Content -Path $RunbookParameters -Raw
+
+    # Create a hash table from the json values passed in
     (ConvertFrom-Json $RunbookParameters).psobject.properties | ForEach-Object { $Parameters[$_.Name] = $_.Value }
     $Runbook = Start-AzureRmAutomationRunbook -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName `
-                                        -Name $RunbookName -Parameters $Parameters -Wait
+                                            -Name $RunbookName -Parameters $Parameters -Wait   
 }
 else 
 {

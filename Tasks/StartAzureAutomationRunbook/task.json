@@ -66,14 +66,14 @@
         },
         { 
             "name": "RunbookParameters", 
-            "type": "string", 
+            "type": "filePath", 
             "label": "Runbook Parameters", 
             "defaultValue":"",
             "required": false,
             "properties": {
                 "EditableOptions": "True"
             },
-            "helpMarkDown": "Specify any parameters for the runbook in a json name value structure. Example {'ParameterName1': 'WA'  , 'ParameterName2':  'Seattle'}."
+            "helpMarkDown": "Specify any parameters for the runbook in a json file. Example {'ParameterName1': 'WA'  , 'ParameterName2':  'Seattle'}."
         }
     ],
     "dataSourceBindings": [
