@@ -65,15 +65,25 @@
             "helpMarkDown": "Specify the name of the runbook"
         },
         { 
-            "name": "RunbookParameters", 
+            "name": "RunbookParametersFile", 
             "type": "filePath", 
             "label": "Runbook Parameters", 
             "defaultValue":"",
             "required": false,
-            "properties": {
-                "EditableOptions": "True"
-            },
             "helpMarkDown": "Specify any parameters for the runbook in a json file. Example {'ParameterName1': 'WA'  , 'ParameterName2':  'Seattle'}."
+        },
+        {
+            "name": "OverwriteParameters",
+            "type": "multiLine",
+            "label": "Overwrite values in paramter file or enter pararmeters in json format",
+            "required": false,
+            "defaultValue": "",
+            "helpMarkDown": "You can enter parameters here in json format or overwrite specifc values from the parameters file. Example {'ParameterName1': 'WA'  , 'ParameterName2':  'Seattle'}.",
+            "properties": {
+                "resizable": "true",
+                "rows": "6",
+                "maxLength": "500"
+            }
         }
     ],
     "dataSourceBindings": [

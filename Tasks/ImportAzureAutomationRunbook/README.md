@@ -16,6 +16,7 @@ This task is used to import a runbook into Azure Automation, in published state.
 
 ## Instructions
 
+This task can be used in either the Build or Release process in Visual Studio Team Services.
 
 ## Prerequisite for the task
 
